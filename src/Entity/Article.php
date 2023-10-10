@@ -25,19 +25,20 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: category::class, inversedBy: 'articles')]
     private Collection $category;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: user::class)]
-    private Collection $author;
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?user $auteur = null;
+
+   
 
     public function __construct()
     {
         $this->category = new ArrayCollection();
-        $this->author = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,12 +82,12 @@ class Article
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -117,32 +118,14 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection<int, user>
-     */
-    public function getAuthor(): Collection
+    public function getAuteur(): ?user
     {
-        return $this->author;
+        return $this->auteur;
     }
 
-    public function addAuthor(user $author): static
+    public function setAuteur(?user $auteur): static
     {
-        if (!$this->author->contains($author)) {
-            $this->author->add($author);
-            $author->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAuthor(user $author): static
-    {
-        if ($this->author->removeElement($author)) {
-            // set the owning side to null (unless already changed)
-            if ($author->getArticle() === $this) {
-                $author->setArticle(null);
-            }
-        }
+        $this->auteur = $auteur;
 
         return $this;
     }
