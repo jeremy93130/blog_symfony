@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %} {% block title %}Hello HomeController!{% endblock
 %} {% block body %}
-<style></style>
+
+{% include "navbar/navbar.html.twig" %}
 
 <div class="example-wrapper">
-  <h1>{{ controller_name }}!!! ✅</h1>
+  {% include "home/myInclude.html.twig" %}
+  <h1 class="text-center">{{ controller_name }}!!! ✅</h1>
   <table>
     <tr>
       <th>Prénoms</th>
