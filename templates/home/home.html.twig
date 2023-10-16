@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %} {% block title %}Hello HomeController!{% endblock
-%} {% block body %} {% include "navbar/navbar.html.twig" %}
-
-{% include "home/myInclude.html.twig" %} 
-<div class="example-wrapper d-flex flex-wrap justify-content-center w-75 m-auto">
-  {% for article in articles %} 
- <div class="card ms-4 mb-3" style="width: 18rem;">
-  <img src="{{article.image}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{article.title}}</h5>
-    <a href="{{ url('detail', {'id': article.id}) }}" class="btn btn-primary">Go somewhere</a>
+%} {% block body %} {% include "navbar/navbar.html.twig" %} {% include
+"home/myInclude.html.twig" %}
+<div
+  class="example-wrapper d-flex flex-wrap justify-content-center w-75 m-auto"
+>
+  {% for article in articles %}
+  <div class="card ms-4 mb-3" style="width: 18rem">
+    <img
+      src="{{ asset('/images/articles/'~ article.image) }}"
+      class="card-img-top h-50"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ article.title }}</h5>
+      <a href="{{ url('detail', { id: article.id }) }}" class="btn btn-primary"
+        >Go somewhere</a
+      >
+    </div>
   </div>
-</div>
   {% endfor %}
 </div>
 {% endblock %}
