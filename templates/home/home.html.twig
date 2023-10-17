@@ -19,5 +19,14 @@
     </div>
   </div>
   {% endfor %}
+  <div>
+    <h2>Catégories</h2>
+    {% for category in categories %}
+    <li>
+      <a href="{{path('categorie', { id: category.id })}}">{{ category.title }}</a>
+      <span class="border bg-danger">{{category.articles | length}} articles</span>
+    </li>
+    {% endfor %}
+  </div>
 </div>
-{% endblock %}
+ {% endblock %}
