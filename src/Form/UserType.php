@@ -61,7 +61,6 @@ class UserType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\EqualTo(propertyPath: 'password', message: 'Les deux mots de passe doivent être identiques')
                 ],
             ])
             ->add('passwordConfirm', PasswordType::class, [
