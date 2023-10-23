@@ -13,9 +13,11 @@
     />
     <div class="card-body">
       <h5 class="card-title">{{ article.title }}</h5>
+      {% if app.user %}
       <a href="{{ url('detail', { id: article.id }) }}" class="btn btn-primary"
-        >Go somewhere</a
+        >Plus de détails</a
       >
+      {% endif %}
     </div>
   </div>
   {% endfor %}
@@ -23,10 +25,14 @@
     <h2>Catégories</h2>
     {% for category in categories %}
     <li>
-      <a href="{{path('categorie', { id: category.id })}}">{{ category.title }}</a>
-      <span class="border bg-danger">{{category.articles | length}} articles</span>
+      <a href="{{ path('categorie', { id: category.id }) }}">{{
+        category.title
+      }}</a>
+      <span class="border bg-danger"
+        >{{ category.articles | length }} articles</span
+      >
     </li>
     {% endfor %}
   </div>
 </div>
- {% endblock %}
+{% endblock %}

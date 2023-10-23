@@ -14,12 +14,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
+            {% if app.user %}
             <li class="nav-item">
-              <a class="nav-link active" href="{{url('app_home')}}"
-                >Home
+              <a class="nav-link active" href="{{url('app_logout')}}"
+                >Log out | Bonjour {{app.user}}
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
+            {% else %}
+              <li class="nav-item">
+              <a class="nav-link active" href="{{url('app_login')}}"
+                >Log in
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{{url('admin')}}">Admin</a>
             </li>

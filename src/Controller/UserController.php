@@ -33,10 +33,8 @@ class UserController extends AbstractController
             $user->setRoles();
             $entityManager->persist($user);
             $entityManager->flush();
-
-
-
-            return new RedirectResponse($this->generateUrl('app_home'));
+            
+            return new RedirectResponse($this->generateUrl('app_login'));
         }
 
 
