@@ -1,19 +1,18 @@
-{% extends "base.html.twig" %} {% block body %}
-{% include "navbar/navbar.html.twig" %}
+{% extends "base.html.twig" %} {% block body %} {% include
+"navbar/navbar.html.twig" %}
 <div
   class="example-wrapper d-flex flex-wrap justify-content-center w-75 m-auto"
 >
   <div class="card ms-4 mb-3" style="width: 18rem">
-    <img src="{{ asset("/images/articles/" ~ id.image) }}"
-    class="card-img-top" alt="{{ id.title }}" />
+    <img src="{{ asset("/images/articles/" ~ id.image) }}" class="card-img-top"
+    alt="{{ id.title }}" />
     <div class="card-body">
       <p>
         Crée le : {{ id.createdAt | date("d/m/y") }} à
-        {{id.createdAt | date("H:m")}} par : <span>{{id.auteur}}</span>
+        {{id.createdAt | date("H:m")}} par : <span>{{ id.auteur }}</span>
       </p>
       <h5 class="card-title">{{ id.title }}</h5>
       <p>{{ id.content }}</p>
-      <a href="" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </div>

@@ -23,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
 
 
 
-//    /**
+    //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
 //    public function findByExampleField($value): array
@@ -38,13 +38,14 @@ class ArticleRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Article
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findArticleByUser($username)
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin('a.auteur', 'u')
+            ->andWhere('u.username = :username')
+            ->setParameter('username', $username)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

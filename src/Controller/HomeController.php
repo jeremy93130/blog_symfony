@@ -5,6 +5,7 @@ use App\Entity\Article;
 use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +25,7 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Security('is_granted("ROLE_USER")')] //Autorise l'affichage des details seulements si l'utilisateur est connecté
     #[Route('/detail/{id}', name: 'detail')]
     public function show(ArticleRepository $articleRepository, $id): Response
     {

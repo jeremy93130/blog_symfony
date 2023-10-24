@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %} {% block title %}Hello AccountController!{%
+endblock %} {% block body %} {% include "navbar/navbar.html.twig" %}
+<div class="example-wrapper">
+  {% if app.user %}
+  <h1>Bonjour {{ app.user.lastname }} {{ app.user.firstname }}</h1>
+  {% else %}
+  <h1>Merci de vous connecter</h1>
+  {% endif %}
+</div>
+{% for article in articlesuser %}
+<div>
+  <h2>{{ article.title }}</h2>
+  <img  src="{{ asset('/images/articles/'~ article.image) }}" alt="{{article.title}}">
+  <p>{{article.content}}</p>
+</div>
+{% endfor %} {% endblock %}
